@@ -74,7 +74,7 @@ public class HundirLaFlota {
             System.out.print("Introdueix la mida del taulell: ");
             midaTaulell = in.nextInt();
             
-        } while (midaTaulell > 0 && midaTaulell <= 10);
+        } while (midaTaulell < 0 || midaTaulell >= 128);
         
         return midaTaulell;
 
@@ -105,103 +105,57 @@ public class HundirLaFlota {
         
         int x = (int) (Math.random() * maxim) + minim;
         int y = (int) (Math.random() * maxim) + minim;
-        
         int mida = midaVaixell[i];
-        int comptador = 0;
         
             try {
 
                 for (int j = 0; j < mida; j++) {
                     
-                    do {
-                    
                     switch(casAleatori()) {
             
                     case 1:
-                        System.out.println("CASE[1]");
-
-                        for (int z = 0; z < mida; z++){
-                            
-                            if ((x-j) > 0 && (y > 00)) {
-
-                                if (taulell[x-j][y] == 0) {
-                                    comptador++;
-                                } else {
-                                    //No hi ha un 0, per tant: cal trobar nova posicio i reiniciar el comptador
-                                    comptador = 0;
-                                    x = (int) (Math.random() * maxim) + minim;
-                                    y = (int) (Math.random() * maxim) + minim;
-                                    break;
-                                }
-                            }
-                        }
-                        
-                        if (comptador == mida) { //Si comptador i mida son iguals es fan els canvis, ja que s'ha comprobat que totes les posicions seran 0
-                            for (int u = 0; u < mida; u++){
-                                taulell[x-j][y] = 1;
-                            }
-                            colocats++;
-                            System.out.println("Colocat++");
-                        } else {
-
-                        }
-
+                        //Amunt
+                        taulell[x-j][y] = 1;
                       break;
 
                     case 2:
-                        System.out.println("CASE[2]");
                       //Avall
                         taulell[x + j][y] = 1;
-                        comptador++;
                       break;
 
                     case 3:
-                        System.out.println("CASE[3] - MIDA[" + mida +"].");
                       //Dreta
                         taulell[x][y+j] = 1;
-                        comptador++;
                       break;
 
                     case 4:
-                        System.out.println("CASE[4] - MIDA[" + mida +"].");
                       //Esquerra
                         taulell[x][y-j] = 1;
-                        comptador++;
                       break;
 
                     case 5:
-                        System.out.println("CASE[5] - MIDA[" + mida +"].");
                       //Amunt-Esquerra
                         taulell[x-j][y-j] = 1;
-                        comptador++;
                       break;
 
                     case 6:
-                        System.out.println("CASE[6] - MIDA[" + mida +"].");
                       //Amunt-Dreta
                         taulell[x-j][y+j] = 1;
-                        comptador++;
                       break;
 
                     case 7:
-                        System.out.println("CASE[7] - MIDA[" + mida +"].");
                       //Avall-Esquerra
                         taulell[x+j][y+j] = 1;
-                        comptador++;
                       break;
 
                     case 8:
-                        System.out.println("CASE[8] - MIDA[" + mida +"].");
                       //Avall-Dreta
                         taulell[x-j][y-j] = 1;
-                        comptador++;
                       break;
 
                     default:
                       //
                 }
-                    System.out.println("Colocats: " + colocats + ", Mida: " + mida);
-                    } while (colocats > 2);
                     
                 }
 
